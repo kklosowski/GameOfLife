@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Created by Eter on 24/05/2017.
+ * Created by kklosowski on 24/05/2017.
  */
 public class CellBoard {
     private int width, height;
@@ -19,7 +19,7 @@ public class CellBoard {
         this.cellSize = cellSize;
     }
 
-    public void initializeRandomly(){
+    public void initializeRandomly() {
 
         cells = new Cell[width][height];
         Random rand = new Random();
@@ -32,7 +32,7 @@ public class CellBoard {
         }
     }
 
-    public int getPixelWidth(){
+    public int getPixelWidth() {
         return width * cellSize;
     }
 
@@ -40,7 +40,7 @@ public class CellBoard {
         return height * cellSize;
     }
 
-    public void nextGeneration(){
+    public void nextGeneration() {
         Arrays.stream(cells).flatMap(Arrays::stream)
                 .forEach(c -> c.calculateNextState(countAliveNeighbours(c)));
 
@@ -48,16 +48,16 @@ public class CellBoard {
                 .forEach(Cell::tick);
     }
 
-    private int countAliveNeighbours(Cell c){
-        return (int)Arrays.stream(cells)
+    private int countAliveNeighbours(Cell c) {
+        return (int) Arrays.stream(cells)
                 .flatMap(Arrays::stream)
-                .filter(x-> Math.abs(x.getX() - c.getX()) <= 1 && Math.abs(x.getY() - c.getY()) <= 1)
+                .filter(x -> Math.abs(x.getX() - c.getX()) <= 1 && Math.abs(x.getY() - c.getY()) <= 1)
                 .filter(Cell::isAlive)
                 .filter(x -> !x.equals(c))
                 .count();
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         Arrays.stream(cells)
                 .flatMap(Arrays::stream)
                 .forEach(c -> c.draw(g));

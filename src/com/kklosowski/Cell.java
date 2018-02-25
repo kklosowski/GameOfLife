@@ -3,17 +3,17 @@ package com.kklosowski;
 import java.awt.*;
 
 /**
- * Created by Eter on 24/05/2017.
+ * Created by kklosowski on 24/05/2017.
  */
 public class Cell {
 
-    private int x,y;
+    private int x, y;
     private int size;
     private boolean state;
     private boolean nextState;
 
     public Cell(int x, int y) {
-        this(x,y,1,false);
+        this(x, y, 1, false);
     }
 
     public Cell(int x, int y, int size, boolean state) {
@@ -31,24 +31,24 @@ public class Cell {
         return y;
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         return state;
     }
 
-    public void calculateNextState(int numberOfNeighbours){
-        if(numberOfNeighbours < 2) nextState = false;
-        else if(numberOfNeighbours == 3 && !state) nextState = true;
-        else if(numberOfNeighbours > 3) nextState = false;
+    public void calculateNextState(int numberOfNeighbours) {
+        if (numberOfNeighbours < 2) nextState = false;
+        else if (numberOfNeighbours == 3 && !state) nextState = true;
+        else if (numberOfNeighbours > 3) nextState = false;
         else nextState = state;
     }
 
-    public void draw(Graphics g){
-        if(state){
+    public void draw(Graphics g) {
+        if (state) {
             g.fillRect(x * size, y * size, size, size);
         }
     }
 
-    public void tick(){
+    public void tick() {
         state = nextState;
     }
 }

@@ -1,14 +1,12 @@
 package com.kklosowski;
 
-import oracle.jrockit.jfr.JFR;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Eter on 24/05/2017.
+ * Created by kklosowski on 24/05/2017.
  */
 public class DisplayWindow extends JFrame implements ActionListener {
 
@@ -22,7 +20,7 @@ public class DisplayWindow extends JFrame implements ActionListener {
     private int windowWidth;
     private int windowHeight;
 
-    public DisplayWindow(CellBoard cellBoard, int animationSpeed){
+    public DisplayWindow(CellBoard cellBoard, int animationSpeed) {
         super();
         this.cellBoard = cellBoard;
         this.animationSpeed = animationSpeed;
@@ -31,13 +29,14 @@ public class DisplayWindow extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(FRAME_TITLE);
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
+        this.setLocation(100, 100);
 
         cellBoard.initializeRandomly();
 
         animationTimer = new Timer(animationSpeed, this);
 
-        drawingPanel = new JPanel(){
-            public void paint(Graphics g){
+        drawingPanel = new JPanel() {
+            public void paint(Graphics g) {
                 super.paintComponent(g);
                 cellBoard.draw(g);
             }
@@ -49,7 +48,7 @@ public class DisplayWindow extends JFrame implements ActionListener {
     }
 
 
-    public void start(){
+    public void start() {
         cellBoard.initializeRandomly();
     }
 
